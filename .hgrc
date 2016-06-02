@@ -1,0 +1,19 @@
+[ui]
+username = Andrei Maksimovich <andrey14@gmail.com>
+merge = internal:merge
+
+[color]
+mode = ansi
+
+[extensions]
+rebase =
+shelve =
+color =
+graphlog =
+histedit =
+strip =
+pager =
+
+[pager]
+pager = LESS='FSRX' less
+attend = cat, diff, log, glog, incoming, outcoming, show

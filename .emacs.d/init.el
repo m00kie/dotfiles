@@ -111,11 +111,19 @@
 ;;
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.json$" . js2-mode))
+;(add-to-list 'auto-mode-alist '("\\.json$" . js2-mode))
 (setq js2-bounce-indent-p nil)
 
 (add-hook 'js-mode-hook 'js2-minor-mode)
 (add-hook 'js2-mode-hook (lambda () (setq indent-tabs-mode nil)))
+(add-hook 'js2-mode-hook (lambda () (if (featurep 'j2-highlight-vars) (j2-highlight-vars-mode))))
+
+(require 'flymake-jshint)
+(add-hook 'js-mode-hook 'flymake-jshint-load)
+(setq flymake-jslint-command nil)
+
+(require 'flymake-json)
+(add-hook 'json-mode-hook 'flymake-json-load)
 
 (setq exec-path (cons "/usr/local/bin" exec-path))
 (setq exec-path (cons "/usr/local/share/npm/bin" exec-path))
@@ -154,13 +162,6 @@
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
-
-;;
-;; mercurial
-;;
-;(require 'mercurial)
-
-(require 'ahg)
 
 ;;
 ;; git
@@ -213,8 +214,8 @@
 ;; haskell
 ;;
 
-(autoload 'ghc-init "ghc" nil t)
-(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
+;(autoload 'ghc-init "ghc" nil t)
+;(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
 ;;(add-to-list 'auto-mode-alist '("\\.elm\\'" . haskell-mode))
@@ -233,6 +234,13 @@
 (require 'elp)
 
 (require 'less-css-mode)
+
+;;
+;; mercurial
+;;
+
+(add-to-list 'load-path "~/.emacs.d/site-lisp/ahg")
+(require 'ahg)
 
 ;; key bindings
 (global-set-key "\C-\M-o" (lambda () (interactive) (progn (move-end-of-line 1) (newline-and-indent))))
@@ -254,7 +262,7 @@
 (load-file "~/.emacs.d/modules/python.el")
 (load-file "~/.emacs.d/modules/html.el")
 (load-file "~/.emacs.d/modules/ruby.el")
-(load-file "~/.emacs.d/modules/scala.el")
+;;(load-file "~/.emacs.d/modules/scala.el")
 (load-file "~/.emacs.d/modules/javascript.el")
 
 ;; multiple-cursors

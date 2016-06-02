@@ -1,0 +1,31 @@
+[user]
+	name = Andrei Maksimovich
+	email = andrey14@gmail.com
+	signingkey = 0B8A4CE6
+
+[alias]
+	st = status
+	ci = commit
+	co = checkout
+    xlog = log --oneline --graph --decorate --color
+
+[color]
+	ui = true
+
+[github]
+	user = mx14 
+	name = Andrei Maksimovich 
+	email = andrey14@gmail.com
+	token =
+
+[push]
+	default = simple 
+
+[core]
+	excludesfile = /Users/mag/.gitignore_global
+
+[commit]
+	gpgsign = true
+
+[pull]
+	rebase = true

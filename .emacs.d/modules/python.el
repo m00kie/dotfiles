@@ -81,12 +81,9 @@
 
 (add-hook 'python-mode-hook
           (lambda ()
-            (auto-complete-mode 1)))
-;;(set (make-local-variable 'ac-sources)
-;;(append ac-sources '(ac-source-rope) '(ac-source-yasnippet)))
-;;(set (make-local-variable 'ac-find-function) 'ac-python-find)
-;;(set (make-local-variable 'ac-candidate-function) 'ac-python-candidate)
-;;(set (make-local-variable 'ac-auto-start) nil)))
+            (auto-complete-mode 1)
+            (local-set-key (kbd "C-<up>") 'py-beginning-of-block)
+            (local-set-key (kbd "C-<down>") 'py-end-of-block)))
 
 
 ;;Ryan's python specific tab completion
@@ -138,15 +135,6 @@
 (setq py-python-command-args '("-colors" "Linux"))
 (defadvice py-execute-buffer (around python-keep-focus activate)
   (save-excursion ad-do-it))
-
-
-(require 'pony-mode)
-
-;;(add-hook 'pony-minor-mode-hook
-;;          (lambda ()
-;;            (global-set-key "\C-c\C-ph" 'pony-stopserver)))
-
-;;(require 'virtualenv)
 
 
 (setq virtualenv-workon-home (expand-file-name "~/.envs"))
